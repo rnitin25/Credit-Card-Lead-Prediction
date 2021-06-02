@@ -1,0 +1,37 @@
+                                                                        Credit Card Lead Prediction Report
+
+train : the given data is further divided into train and test where model is built on 80% of the data and remaining was left to test the model
+test : the given test data is saved as 'new_customer' data to avoid confusion during model building stage
+
+
+1. Data Preparation :
+	To prepare data for model building, I  have performed following tramsformation thorugh pipeline
+
+	a) Numerical Dataset Pipeline :   
+	
+ 	> Avg Account balance is tranformed into its log to normalize its distribution
+	> There are some outliers present , hence capped the outliers value with respective 99th & 1st percentile value.
+	> All the features are scaled by Standard Scalar
+
+	b) Categorical Dataset Pipeline
+	> There are missing values in Credit_Product column , which is replaced by its most frequent value
+	> All the features get one-hot-encoded
+
+2. Model Building :
+	
+	train data is divided into X_train , and y_train
+	test data is divided into X_test and y_test
+
+
+	a) Model accuracy was tested on various algorithms and Gradient Boost was consider giving best cross-val-score  of 78% but poor result on test data ,
+	    hence sign of overfitting
+
+3. To overcome the overfitting:
+	Undersampling :  As only approx 24% true value was available for target variable , thus the worst model could give accuracy of 76% , to overcome this issue
+		            I have undersampled the data to get 50-50 ratio of target labels with 'imblearn package'
+	The model parameters was tuned with Gridsearch and best model was selected which gave better result on both train and test data.
+
+4. The model then used to predict probabilities of new data.
+
+###### THE END
+
